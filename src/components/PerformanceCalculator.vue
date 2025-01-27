@@ -153,6 +153,59 @@
               </div>
             </div>
 
+            <!-- SGS ve UOH Checkbox'ları -->
+            <div class="mt-4 sm:mt-6 space-y-4">
+              <!-- SGS -->
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <input 
+                    type="checkbox" 
+                    v-model="hasSGS"
+                    class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded transition-colors cursor-pointer"
+                  />
+                  <label class="ml-2 block text-sm text-gray-700">
+                    SGS Kesintisi
+                  </label>
+                </div>
+                <div v-if="hasSGS" class="ml-6">
+                  <select 
+                    v-model="selectedSGSReason"
+                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm rounded-md"
+                  >
+                    <option value="">Reason Seçiniz</option>
+                    <option v-for="reason in sgsReasons" :key="reason.id" :value="reason.id">
+                      {{ reason.text }} (-{{ reason.puan }} puan)
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- UOH -->
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <input 
+                    type="checkbox" 
+                    v-model="hasUOH"
+                    class="h-4 w-4 text-amber-600 focus:ring-amber-500 border-gray-300 rounded transition-colors cursor-pointer"
+                  />
+                  <label class="ml-2 block text-sm text-gray-700">
+                    UOH Kesintisi
+                  </label>
+                </div>
+                <div v-if="hasUOH" class="ml-6">
+                  <select 
+                    v-model="selectedUOHReason"
+                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-amber-500 focus:border-amber-500 sm:text-sm rounded-md"
+                  >
+                    <option value="">Reason Seçiniz</option>
+                    <option v-for="reason in uohReasons" :key="reason.id" :value="reason.id">
+                      {{ reason.text }} (-{{ reason.puan }} puan)
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
             <!-- Hesapla Butonu -->
             <button 
               @click="calculatePerformance"
@@ -250,8 +303,10 @@
                 <div class="bg-red-50 rounded-xl p-4 sm:p-6">
                   <div class="flex items-center justify-between">
                     <div>
-                      <div class="text-sm text-red-600 font-medium">Devamsızlık Kesintisi</div>
-                      <div class="mt-1 text-2xl font-semibold text-red-700">{{ result.devamsizlikPuani.toFixed(1) }}</div>
+                      <div class="text-sm text-red-600 font-medium">Kesintiler</div>
+                      <div class="mt-1 text-2xl font-semibold text-red-700">
+                        {{ (result.devamsizlikPuani + result.sgsPuani + result.uohPuani).toFixed(1) }}
+                      </div>
                     </div>
                     <div class="text-red-500 bg-red-100 rounded-full p-2">
                       <svg class="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -259,7 +314,17 @@
                       </svg>
                     </div>
                   </div>
-                  <div class="mt-1 text-sm text-red-600 font-medium">{{ devamsizlik }} gün kesinti</div>
+                  <div class="mt-1 text-sm text-red-600 font-medium space-y-0.5">
+                    <div v-if="devamsizlik > 0">{{ devamsizlik }} gün: -{{ result.devamsizlikPuani.toFixed(1) }}</div>
+                    <div v-if="hasSGS && selectedSGSReason">
+                      SGS ({{ sgsReasons.find(r => r.id === selectedSGSReason)?.text }}): 
+                      -{{ result.sgsPuani.toFixed(1) }}
+                    </div>
+                    <div v-if="hasUOH && selectedUOHReason">
+                      UOH ({{ uohReasons.find(r => r.id === selectedUOHReason)?.text }}): 
+                      -{{ result.uohPuani.toFixed(1) }}
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -419,6 +484,8 @@ interface PerformanceResult {
   mmaPuan: number
   achtPuan: number
   devamsizlikPuani: number
+  sgsPuani: number
+  uohPuani: number
   toplamPuan: number
   seviye: string
   seviyeRenk: string
@@ -427,7 +494,41 @@ interface PerformanceResult {
 const mmaValue = ref('')
 const achtValue = ref('')
 const devamsizlik = ref(0)
+const hasSGS = ref(false)
+const hasUOH = ref(false)
 const result = ref<PerformanceResult | null>(null)
+
+// Reason tabloları
+const sgsReasons = [
+  { id: 1, text: 'Hatalı bilgi', puan: 5 },
+  { id: 2, text: 'Hatalı İşlem', puan: 5 },
+  { id: 3, text: 'Eksik bilgi', puan: 5 },
+  { id: 4, text: 'Eksik işlem', puan: 5 },
+  { id: 5, text: 'Bekletme', puan: 5 },
+  { id: 6, text: 'Güvenlik Teyidi', puan: 5 },
+  { id: 7, text: 'PTD', puan: 10 },
+  { id: 8, text: 'Hizmet ve Kalite Politikalarına Uygun olmayan Çağrı Yönetimi', puan: 10 },
+  { id: 9, text: 'Rakip Operator ve hat iptal Talabine Karşı Duyarsız Kalma', puan: 10 },
+  { id: 10, text: 'Görüşme Sonlandırma', puan: 60 },
+  { id: 11, text: 'Tarz', puan: 60 }
+]
+
+const uohReasons = [
+  { id: 1, text: 'Hatalı bilgi', puan: 1 },
+  { id: 2, text: 'Hatalı İşlem', puan: 1 },
+  { id: 3, text: 'Eksik bilgi', puan: 1 },
+  { id: 4, text: 'Eksik işlem', puan: 1 },
+  { id: 5, text: 'Bekletme', puan: 1 },
+  { id: 6, text: 'Güvenlik Teyidi', puan: 1 },
+  { id: 7, text: 'PTD', puan: 5 },
+  { id: 8, text: 'Hizmet ve Kalite Politikalarına Uygun olmayan Çağrı Yönetimi', puan: 5 },
+  { id: 9, text: 'Rakip Operator ve hat iptal Talabine Karşı Duyarsız Kalma', puan: 5 },
+  { id: 10, text: 'Görüşme Sonlandırma', puan: 60 },
+  { id: 11, text: 'Tarz', puan: 60 }
+]
+
+const selectedSGSReason = ref<number | null>(null)
+const selectedUOHReason = ref<number | null>(null)
 
 const calculateMMAScore = (value: number) => {
   // MMA değer aralıkları ve performans puanları
@@ -549,17 +650,35 @@ const calculateDevamsizlikPuani = (gunSayisi: number) => {
 }
 
 const calculatePerformance = () => {
-  const mmaScore = calculateMMAScore(Number(mmaValue.value))
-  const achtScore = calculateACHTScore(Number(achtValue.value))
+  const mma = Number(mmaValue.value)
+  const acht = Number(achtValue.value)
+
+  if (!mma || !acht) {
+    alert('Lütfen MMA ve ACHT değerlerini giriniz.')
+    return
+  }
+
+  const mmaPuan = calculateMMAScore(mma)
+  const achtPuan = calculateACHTScore(acht)
   const devamsizlikPuani = calculateDevamsizlikPuani(Number(devamsizlik.value))
-  const totalScore = mmaScore + achtScore + devamsizlikPuani
-  const performanceLevel = calculatePerformanceLevel(totalScore)
   
+  // SGS ve UOH puanlarını seçilen reason'a göre hesapla
+  const sgsPuani = hasSGS.value && selectedSGSReason.value ? 
+    sgsReasons.find(r => r.id === selectedSGSReason.value)?.puan || 0 : 0
+  
+  const uohPuani = hasUOH.value && selectedUOHReason.value ? 
+    uohReasons.find(r => r.id === selectedUOHReason.value)?.puan || 0 : 0
+
+  const toplamPuan = mmaPuan + achtPuan - devamsizlikPuani - sgsPuani - uohPuani
+  const performanceLevel = calculatePerformanceLevel(toplamPuan)
+
   result.value = {
-    mmaPuan: mmaScore,
-    achtPuan: achtScore,
-    devamsizlikPuani: devamsizlikPuani,
-    toplamPuan: totalScore,
+    mmaPuan,
+    achtPuan,
+    devamsizlikPuani,
+    sgsPuani,
+    uohPuani,
+    toplamPuan,
     seviye: performanceLevel.level,
     seviyeRenk: performanceLevel.color
   }
