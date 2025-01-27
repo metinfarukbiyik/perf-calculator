@@ -1,31 +1,31 @@
 <template>
-  <div class="min-h-screen w-screen bg-[#fafafa] relative overflow-hidden">
+  <div class="min-h-screen bg-[#fafafa] relative overflow-hidden">
     <!-- Background Pattern -->
     <div class="fixed inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]"></div>
     <div class="fixed inset-0 bg-gradient-radial"></div>
 
-    <div class="relative w-full">
+    <div class="relative container mx-auto">
       <!-- Title -->
       <title>LiveChat Performans Hesaplama</title>
 
-      <div class="max-w-3xl mx-auto py-8 px-4 sm:py-12 sm:px-6 w-full">
+      <div class="max-w-3xl mx-auto py-4 px-4 sm:py-8 sm:px-6 lg:px-8">
         <!-- Header -->
-        <div class="text-center mb-10">
-          <h1 class="text-3xl sm:text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+        <div class="text-center mb-6 sm:mb-8">
+          <h1 class="text-2xl sm:text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
             LiveChat Performans Hesaplama
           </h1>
-          <p class="mt-3 text-base text-gray-600 font-light">
+          <p class="mt-2 sm:mt-3 text-sm sm:text-base text-gray-600 font-light px-4">
             MMA ve ACHT değerlerinizi girerek performans puanınızı hesaplayın
           </p>
         </div>
 
         <!-- Ana Kart -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden mx-auto">
           <!-- Input Alanları -->
-          <div class="p-6 sm:p-8">
-            <div class="grid gap-6 sm:grid-cols-2">
+          <div class="p-4 sm:p-6 lg:p-8">
+            <div class="grid gap-4 sm:gap-6 sm:grid-cols-2">
               <!-- MMA Input -->
-              <div>
+              <div class="w-full">
                 <label class="block text-sm font-medium text-gray-700 mb-1">
                   MMA Değeri
                   <span class="ml-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-800">
@@ -67,7 +67,7 @@
               </div>
 
               <!-- ACHT Input -->
-              <div>
+              <div class="w-full">
                 <label class="block text-sm font-medium text-gray-700 mb-1">
                   ACHT Değeri
                   <span class="ml-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-50 text-indigo-800">
@@ -110,7 +110,7 @@
             </div>
 
             <!-- Devamsızlık Input -->
-            <div class="mt-6">
+            <div class="mt-4 sm:mt-6 w-full">
               <label class="block text-sm font-medium text-gray-700 mb-1">
                 Devamsızlık
                 <span class="ml-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-50 text-red-800">
@@ -156,7 +156,7 @@
             <!-- Hesapla Butonu -->
             <button 
               @click="calculatePerformance"
-              class="mt-6 w-full inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-150 transform hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+              class="mt-4 sm:mt-6 w-full inline-flex justify-center items-center px-4 sm:px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-150 transform hover:scale-[1.02] active:scale-[0.98] shadow-sm"
             >
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -167,10 +167,10 @@
 
           <!-- Sonuçlar -->
           <div v-if="result" class="border-t border-gray-100">
-            <div class="p-6 sm:p-8 space-y-6">
+            <div class="p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6">
               <!-- Girilen Değerler -->
-              <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6">
-                <div class="flex items-center justify-between mb-4">
+              <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg sm:rounded-xl p-4 sm:p-6">
+                <div class="flex items-center justify-between mb-3 sm:mb-4">
                   <h4 class="text-sm font-medium text-gray-900">Girilen Değerler</h4>
                   <div class="text-gray-400 bg-white rounded-full p-2 shadow-sm">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -178,7 +178,7 @@
                     </svg>
                   </div>
                 </div>
-                <div class="grid grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                   <div class="bg-white rounded-lg p-4 shadow-sm">
                     <div class="flex items-center justify-between">
                       <div class="text-sm font-medium text-gray-500">MMA</div>
@@ -216,15 +216,15 @@
               </div>
 
               <!-- Performans Puanları -->
-              <div class="grid gap-4 sm:grid-cols-3">
-                <div class="bg-blue-50 rounded-xl p-4">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                <div class="bg-blue-50 rounded-xl p-4 sm:p-6">
                   <div class="flex items-center justify-between">
                     <div>
                       <div class="text-sm text-blue-600 font-medium">MMA Puanı</div>
                       <div class="mt-1 text-2xl font-semibold text-blue-700">{{ result.mmaPuan.toFixed(1) }}</div>
                     </div>
                     <div class="text-blue-500 bg-blue-100 rounded-full p-2">
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
                     </div>
@@ -232,14 +232,14 @@
                   <div class="mt-1 text-sm text-blue-600 font-medium">Ağırlık: %80</div>
                 </div>
 
-                <div class="bg-indigo-50 rounded-xl p-4">
+                <div class="bg-indigo-50 rounded-xl p-4 sm:p-6">
                   <div class="flex items-center justify-between">
                     <div>
                       <div class="text-sm text-indigo-600 font-medium">ACHT Puanı</div>
                       <div class="mt-1 text-2xl font-semibold text-indigo-700">{{ result.achtPuan.toFixed(1) }}</div>
                     </div>
                     <div class="text-indigo-500 bg-indigo-100 rounded-full p-2">
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
                     </div>
@@ -247,14 +247,14 @@
                   <div class="mt-1 text-sm text-indigo-600 font-medium">Ağırlık: %20</div>
                 </div>
 
-                <div class="bg-red-50 rounded-xl p-4">
+                <div class="bg-red-50 rounded-xl p-4 sm:p-6">
                   <div class="flex items-center justify-between">
                     <div>
                       <div class="text-sm text-red-600 font-medium">Devamsızlık Kesintisi</div>
                       <div class="mt-1 text-2xl font-semibold text-red-700">{{ result.devamsizlikPuani.toFixed(1) }}</div>
                     </div>
                     <div class="text-red-500 bg-red-100 rounded-full p-2">
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4M12 20V4" />
                       </svg>
                     </div>
@@ -264,19 +264,19 @@
               </div>
 
               <!-- Toplam Puan -->
-              <div class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl p-6 text-white">
-                <div class="flex items-center justify-between">
+              <div class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg sm:rounded-xl p-4 sm:p-6 text-white">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
                     <h4 class="text-sm font-medium text-blue-100">Toplam Performans Puanı</h4>
-                    <div class="mt-1">
-                      <span class="text-4xl font-bold tracking-tight">{{ result.toplamPuan.toFixed(1) }}</span>
-                      <span :class="[result.seviyeRenk, 'ml-3 text-lg bg-white/10 px-3 py-1 rounded-full font-medium']">
+                    <div class="mt-1 flex flex-wrap items-center gap-2 sm:gap-3">
+                      <span class="text-3xl sm:text-4xl font-bold tracking-tight">{{ result.toplamPuan.toFixed(1) }}</span>
+                      <span :class="[result.seviyeRenk, 'text-base sm:text-lg bg-white/10 px-3 py-1 rounded-full font-medium']">
                         {{ result.seviye }}
                       </span>
                     </div>
                   </div>
-                  <div class="bg-white/10 rounded-full p-3">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="bg-white/10 rounded-full p-2 sm:p-3 self-end sm:self-auto">
+                    <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
@@ -286,8 +286,57 @@
           </div>
         </div>
 
+        <!-- Performans Seviyeleri -->
+        <div class="mt-6 rounded-lg sm:rounded-xl bg-white shadow-lg p-4 sm:p-6 border border-gray-100">
+          <div class="flex items-center gap-2 mb-4">
+            <svg class="h-5 w-5 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            <h4 class="text-base sm:text-lg font-medium text-gray-900">Performans Seviyeleri</h4>
+          </div>
+
+          <!-- Grid Container -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+            <!-- BS -->
+            <div class="rounded-lg bg-red-50 p-3 sm:p-4 flex flex-col justify-between">
+              <div class="text-lg font-semibold text-red-600">BS</div>
+              <div class="text-sm sm:text-base font-medium text-red-900 mt-1">0 - 95 puan</div>
+            </div>
+            <!-- BA -->
+            <div class="rounded-lg bg-orange-50 p-3 sm:p-4 flex flex-col justify-between">
+              <div class="text-lg font-semibold text-orange-600">BA</div>
+              <div class="text-sm sm:text-base font-medium text-orange-900 mt-1">96 - 99 puan</div>
+            </div>
+            <!-- B1 -->
+            <div class="rounded-lg bg-yellow-50 p-3 sm:p-4 flex flex-col justify-between">
+              <div class="text-lg font-semibold text-yellow-600">B1</div>
+              <div class="text-sm sm:text-base font-medium text-yellow-900 mt-1">100 - 106 puan</div>
+            </div>
+            <!-- B2 -->
+            <div class="rounded-lg bg-blue-50 p-3 sm:p-4 flex flex-col justify-between">
+              <div class="text-lg font-semibold text-blue-600">B2</div>
+              <div class="text-sm sm:text-base font-medium text-blue-900 mt-1">107 - 112 puan</div>
+            </div>
+            <!-- B3 -->
+            <div class="rounded-lg bg-indigo-50 p-3 sm:p-4 flex flex-col justify-between">
+              <div class="text-lg font-semibold text-indigo-600">B3</div>
+              <div class="text-sm sm:text-base font-medium text-indigo-900 mt-1">113 - 116 puan</div>
+            </div>
+            <!-- ÜB -->
+            <div class="rounded-lg bg-violet-50 p-3 sm:p-4 flex flex-col justify-between">
+              <div class="text-lg font-semibold text-violet-600">ÜB</div>
+              <div class="text-sm sm:text-base font-medium text-violet-900 mt-1">117 - 121 puan</div>
+            </div>
+            <!-- OB -->
+            <div class="rounded-lg bg-purple-50 p-3 sm:p-4 flex flex-col justify-between col-span-2">
+              <div class="text-lg font-semibold text-purple-600">OB</div>
+              <div class="text-sm sm:text-base font-medium text-purple-900 mt-1">122+ puan</div>
+            </div>
+          </div>
+        </div>
+
         <!-- Bilgi Kartları -->
-        <div class="mt-6 space-y-4">
+        <div class="mt-4 sm:mt-6 space-y-3 sm:space-y-4 mx-auto">
           <!-- Mevcut Bilgi Kartı -->
           <div class="rounded-xl bg-white shadow-sm p-4 border border-gray-100">
             <div class="flex items-start">
@@ -304,82 +353,36 @@
               </div>
             </div>
           </div>
-
-          <!-- Performans Seviyeleri Kartı -->
-          <div class="rounded-xl bg-white shadow-sm p-4 border border-gray-100">
-            <div class="flex items-start space-x-3">
-              <div class="flex-shrink-0">
-                <svg class="h-5 w-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <div class="flex-1">
-                <h4 class="text-sm font-medium text-gray-900 mb-2">Performans Seviyeleri</h4>
-                <div class="grid grid-cols-12 gap-3">
-                  <!-- Üst sıra -->
-                  <div class="rounded-lg bg-red-50 p-3 flex flex-col justify-between min-h-[80px] col-span-3">
-                    <div class="text-xs font-medium text-red-600">BS</div>
-                    <div class="text-sm font-medium text-red-900">0 - 95 puan</div>
-                  </div>
-                  <div class="rounded-lg bg-orange-50 p-3 flex flex-col justify-between min-h-[80px] col-span-3">
-                    <div class="text-xs font-medium text-orange-600">BA</div>
-                    <div class="text-sm font-medium text-orange-900">96 - 99 puan</div>
-                  </div>
-                  <div class="rounded-lg bg-yellow-50 p-3 flex flex-col justify-between min-h-[80px] col-span-3">
-                    <div class="text-xs font-medium text-yellow-600">B1</div>
-                    <div class="text-sm font-medium text-yellow-900">100 - 106 puan</div>
-                  </div>
-                  <div class="rounded-lg bg-blue-50 p-3 flex flex-col justify-between min-h-[80px] col-span-3">
-                    <div class="text-xs font-medium text-blue-600">B2</div>
-                    <div class="text-sm font-medium text-blue-900">107 - 112 puan</div>
-                  </div>
-                  <!-- Alt sıra -->
-                  <div class="rounded-lg bg-indigo-50 p-3 flex flex-col justify-between min-h-[80px] col-span-4">
-                    <div class="text-xs font-medium text-indigo-600">B3</div>
-                    <div class="text-sm font-medium text-indigo-900">113 - 116 puan</div>
-                  </div>
-                  <div class="rounded-lg bg-violet-50 p-3 flex flex-col justify-between min-h-[80px] col-span-4">
-                    <div class="text-xs font-medium text-violet-600">ÜB</div>
-                    <div class="text-sm font-medium text-violet-900">117 - 121 puan</div>
-                  </div>
-                  <div class="rounded-lg bg-purple-50 p-3 flex flex-col justify-between min-h-[80px] col-span-4">
-                    <div class="text-xs font-medium text-purple-600">OB</div>
-                    <div class="text-sm font-medium text-purple-900">122+ puan</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
+
+        <!-- Footer -->
+        <footer class="relative mt-6 sm:mt-8 py-4 sm:py-6 text-center">
+          <p class="text-sm text-gray-600 flex flex-wrap items-center justify-center gap-2 px-4 sm:px-6">
+            <span>Bu proje</span>
+            <a href="https://biyik.dev" target="_blank" rel="noopener noreferrer" class="text-rose-600 hover:text-rose-700 font-medium transition-colors inline-flex items-center gap-1">
+              <span class="inline-flex items-center justify-center bg-rose-100 text-rose-700 rounded w-5 h-5 text-xs font-bold">M</span>
+              Metin Bıyık
+            </a> 
+            <span>tarafından</span>
+            <span class="inline-flex items-center text-emerald-600 font-medium bg-white/50 rounded-full px-2 py-1">
+              <svg class="w-4 h-4 mr-1" viewBox="0 0 128 128">
+                <path fill="currentColor" d="M0 0h128v128H0z"/>
+                <path fill="#fff" d="M32 32.6l32 55.4 32-55.4h-12.8L64 67.2 44.8 32.6z"/>
+              </svg>
+              Vue.js
+            </span>
+            <span>ve</span>
+            <span class="inline-flex items-center text-sky-600 font-medium bg-white/50 rounded-full px-2 py-1">
+              <svg class="w-4 h-4 mr-1" viewBox="0 0 54 33">
+                <path fill="currentColor" d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z"/>
+              </svg>
+              TailwindCSS
+            </span>
+            <span>kullanılarak oluşturulmuştur.</span>
+          </p>
+        </footer>
       </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="relative mt-auto py-6 text-center">
-      <p class="text-sm text-gray-600 flex items-center justify-center gap-1.5">
-        Bu proje 
-        <a href="https://biyik.dev" target="_blank" rel="noopener noreferrer" class="text-rose-600 hover:text-rose-700 font-medium transition-colors inline-flex items-center gap-1">
-          <span class="inline-flex items-center justify-center bg-rose-100 text-rose-700 rounded w-5 h-5 text-xs font-bold">M</span>
-          Metin Bıyık
-        </a> 
-        tarafından
-        <span class="inline-flex items-center text-emerald-600 font-medium bg-white/50 rounded-full px-2.5 py-1">
-          <svg class="w-4 h-4 mr-1" viewBox="0 0 128 128">
-            <path fill="currentColor" d="M0 0h128v128H0z"/>
-            <path fill="#fff" d="M32 32.6l32 55.4 32-55.4h-12.8L64 67.2 44.8 32.6z"/>
-          </svg>
-          Vue.js
-        </span>
-        ve
-        <span class="inline-flex items-center text-sky-600 font-medium bg-white/50 rounded-full px-2.5 py-1">
-          <svg class="w-4 h-4 mr-1" viewBox="0 0 54 33">
-            <path fill="currentColor" d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z"/>
-          </svg>
-          TailwindCSS
-        </span>
-        kullanılarak oluşturulmuştur.
-      </p>
-    </footer>
   </div>
 </template>
 
