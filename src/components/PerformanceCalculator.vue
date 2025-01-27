@@ -347,8 +347,8 @@
               </div>
               <div class="ml-3">
                 <p class="text-sm text-gray-600">
-                  MMA hedef değeri <span class="font-medium text-blue-600">4.10 (100 puan)</span> ve 
-                  ACHT hedef değeri <span class="font-medium text-indigo-600">500 (130 puan)</span> olarak belirlenmiştir.
+                  <span class="font-bold text-blue-600">MMA</span> hedef değeri <span class="font-medium text-blue-600">4.10 (100 puan)</span> ve 
+                  <span class="font-bold text-indigo-600">ACHT</span> hedef değeri <span class="font-bold text-indigo-600">500 saniye</span> olarak belirlenmiştir. <span class="font-bold text-indigo-600">460</span> ve <span class="font-bold text-indigo-600">540</span> saniye değerleri <span class="font-bold text-yellow-600">B hedefi (100 puan)</span> olarak kabul edilir. Hedef değere yaklaştıkça puan <span class="font-bold text-purple-600">130 puana</span> kadar yükselir.
                 </p>
               </div>
             </div>
