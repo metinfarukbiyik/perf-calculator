@@ -20,7 +20,7 @@
         </div>
 
         <!-- Ana Kart -->
-        <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden mx-auto">
+        <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-visible mx-auto">
           <!-- Input Alanları -->
           <div class="p-4 sm:p-6 lg:p-8">
             <div class="grid gap-4 sm:gap-6 sm:grid-cols-2">
@@ -165,18 +165,54 @@
                   />
                   <label class="ml-2 block text-sm text-gray-700">
                     SGS Kesintisi
+                    <span class="ml-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-orange-50 text-orange-800">
+                      -5 ile -60 puan arası
+                    </span>
                   </label>
                 </div>
                 <div v-if="hasSGS" class="ml-6">
-                  <select 
-                    v-model="selectedSGSReason"
-                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm rounded-md"
-                  >
-                    <option value="">Reason Seçiniz</option>
-                    <option v-for="reason in sgsReasons" :key="reason.id" :value="reason.id">
-                      {{ reason.text }} (-{{ reason.puan }} puan)
-                    </option>
-                  </select>
+                  <div class="relative">
+                    <button 
+                      @click="(event) => toggleSGSDropdown(event)"
+                      type="button"
+                      class="relative w-full cursor-default rounded-lg bg-white py-1.5 sm:py-2.5 pl-3 sm:pl-4 pr-8 sm:pr-10 text-left border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-150 text-xs sm:text-sm font-normal sm:font-medium"
+                    >
+                      <span v-if="selectedSGSReason" class="flex items-center justify-between w-full">
+                        <span class="block truncate text-gray-900">
+                          {{ sgsReasons.find(r => r.id === selectedSGSReason)?.text }}
+                        </span>
+                        <span class="text-orange-600 ml-1 sm:ml-2">
+                          -{{ sgsReasons.find(r => r.id === selectedSGSReason)?.puan }}p
+                        </span>
+                      </span>
+                      <span v-else class="block truncate text-gray-500">
+                        Reason Seçiniz
+                      </span>
+                      <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-3">
+                        <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8l4 4 4-4" />
+                        </svg>
+                      </span>
+                    </button>
+                    <div 
+                      v-if="isSGSOpen"
+                      class="absolute z-50 mt-1 max-h-[300px] w-full overflow-auto rounded-lg bg-white py-1 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none"
+                      style="position: absolute; top: 100%; left: 0;"
+                    >
+                      <div 
+                        v-for="reason in sgsReasons" 
+                        :key="reason.id"
+                        @click="(event) => selectSGSReason(reason.id, event)"
+                        class="relative cursor-pointer select-none py-1.5 sm:py-2.5 pl-3 sm:pl-4 pr-8 sm:pr-10 hover:bg-orange-50 text-gray-900"
+                        :class="{ 'bg-orange-50 text-orange-900': selectedSGSReason === reason.id }"
+                      >
+                        <span class="block truncate text-xs sm:text-sm font-normal sm:font-medium">{{ reason.text }}</span>
+                        <span class="absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-8 text-orange-600 text-xs sm:text-sm font-normal sm:font-medium">
+                          -{{ reason.puan }}p
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -190,18 +226,54 @@
                   />
                   <label class="ml-2 block text-sm text-gray-700">
                     UOH Kesintisi
+                    <span class="ml-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-amber-50 text-amber-800">
+                      -1 ile -60 puan arası
+                    </span>
                   </label>
                 </div>
                 <div v-if="hasUOH" class="ml-6">
-                  <select 
-                    v-model="selectedUOHReason"
-                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-amber-500 focus:border-amber-500 sm:text-sm rounded-md"
-                  >
-                    <option value="">Reason Seçiniz</option>
-                    <option v-for="reason in uohReasons" :key="reason.id" :value="reason.id">
-                      {{ reason.text }} (-{{ reason.puan }} puan)
-                    </option>
-                  </select>
+                  <div class="relative">
+                    <button 
+                      @click="(event) => toggleUOHDropdown(event)"
+                      type="button"
+                      class="relative w-full cursor-default rounded-lg bg-white py-1.5 sm:py-2.5 pl-3 sm:pl-4 pr-8 sm:pr-10 text-left border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-transparent transition duration-150 text-xs sm:text-sm font-normal sm:font-medium"
+                    >
+                      <span v-if="selectedUOHReason" class="flex items-center justify-between w-full">
+                        <span class="block truncate text-gray-900">
+                          {{ uohReasons.find(r => r.id === selectedUOHReason)?.text }}
+                        </span>
+                        <span class="text-amber-600 ml-1 sm:ml-2">
+                          -{{ uohReasons.find(r => r.id === selectedUOHReason)?.puan }}p
+                        </span>
+                      </span>
+                      <span v-else class="block truncate text-gray-500">
+                        Reason Seçiniz
+                      </span>
+                      <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-3">
+                        <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8l4 4 4-4" />
+                        </svg>
+                      </span>
+                    </button>
+                    <div 
+                      v-if="isUOHOpen"
+                      class="absolute z-50 mt-1 max-h-[300px] w-full overflow-auto rounded-lg bg-white py-1 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none"
+                      style="position: absolute; top: 100%; left: 0;"
+                    >
+                      <div 
+                        v-for="reason in uohReasons" 
+                        :key="reason.id"
+                        @click="(event) => selectUOHReason(reason.id, event)"
+                        class="relative cursor-pointer select-none py-1.5 sm:py-2.5 pl-3 sm:pl-4 pr-8 sm:pr-10 hover:bg-amber-50 text-gray-900"
+                        :class="{ 'bg-amber-50 text-amber-900': selectedUOHReason === reason.id }"
+                      >
+                        <span class="block truncate text-xs sm:text-sm font-normal sm:font-medium">{{ reason.text }}</span>
+                        <span class="absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-8 text-amber-600 text-xs sm:text-sm font-normal sm:font-medium">
+                          -{{ reason.puan }}p
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -478,7 +550,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 interface PerformanceResult {
   mmaPuan: number
@@ -529,6 +601,44 @@ const uohReasons = [
 
 const selectedSGSReason = ref<number | null>(null)
 const selectedUOHReason = ref<number | null>(null)
+
+// Dropdown durumları için ref'ler
+const isSGSOpen = ref(false)
+const isUOHOpen = ref(false)
+
+// Dropdown toggle fonksiyonlarını güncelle
+const toggleSGSDropdown = (event: Event) => {
+  event.stopPropagation() // Event'in parent elementlere yayılmasını engelle
+  isSGSOpen.value = !isSGSOpen.value
+  isUOHOpen.value = false
+}
+
+const toggleUOHDropdown = (event: Event) => {
+  event.stopPropagation() // Event'in parent elementlere yayılmasını engelle
+  isUOHOpen.value = !isUOHOpen.value
+  isSGSOpen.value = false
+}
+
+// Dropdown dışına tıklandığında kapanması için event listener
+onMounted(() => {
+  document.addEventListener('click', () => {
+    isSGSOpen.value = false
+    isUOHOpen.value = false
+  })
+})
+
+// Reason seçme fonksiyonları
+const selectSGSReason = (id: number, event: Event) => {
+  event.stopPropagation() // Event'in parent elementlere yayılmasını engelle
+  selectedSGSReason.value = id
+  isSGSOpen.value = false
+}
+
+const selectUOHReason = (id: number, event: Event) => {
+  event.stopPropagation() // Event'in parent elementlere yayılmasını engelle
+  selectedUOHReason.value = id
+  isUOHOpen.value = false
+}
 
 const calculateMMAScore = (value: number) => {
   // MMA değer aralıkları ve performans puanları
@@ -721,5 +831,29 @@ const calculatePerformance = () => {
 /* Firefox için scrollbar'ı gizle */
 * {
   scrollbar-width: none;
+}
+
+/* Select element stilleri */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+}
+
+select option {
+  padding: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* SGS için özel renkler */
+select:focus.ring-orange-500 {
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+}
+
+/* UOH için özel renkler */
+select:focus.ring-amber-500 {
+  box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.2);
 }
 </style> 
