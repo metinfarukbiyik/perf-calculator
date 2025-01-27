@@ -345,11 +345,37 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <div class="ml-3">
-                <p class="text-sm text-gray-600">
-                  <span class="font-bold text-blue-600">MMA</span> hedef değeri <span class="font-medium text-blue-600">4.10 (100 puan)</span> ve 
-                  <span class="font-bold text-indigo-600">ACHT</span> hedef değeri <span class="font-bold text-indigo-600">500 saniye</span> olarak belirlenmiştir. <span class="font-bold text-indigo-600">460</span> ve <span class="font-bold text-indigo-600">540</span> saniye değerleri <span class="font-bold text-yellow-600">B hedefi (100 puan)</span> olarak kabul edilir. Hedef değere yaklaştıkça puan <span class="font-bold text-purple-600">130 puana</span> kadar yükselir.
-                </p>
+              <div class="ml-3 space-y-2">
+                <!-- Hedef Değerler -->
+                <div class="flex items-center gap-2">
+                  <svg class="w-3 h-3 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                  <p class="text-sm text-gray-600">
+                    <span class="font-bold text-blue-600">MMA</span> hedef değeri <span class="font-medium text-blue-600">4.10 (100 puan)</span> ve 
+                    <span class="font-bold text-indigo-600">ACHT</span> hedef değeri <span class="font-bold text-indigo-600">500 saniye</span> olarak belirlenmiştir.
+                  </p>
+                </div>
+
+                <!-- MMA Açıklaması -->
+                <div class="flex items-center gap-2">
+                  <svg class="w-3 h-3 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                  <p class="text-sm text-gray-600">
+                    <span class="font-bold text-blue-600">MMA</span> için <span class="font-medium text-blue-600">4.10</span> değeri <span class="font-bold text-yellow-600">B hedefi (100 puan)</span> olarak kabul edilir. Bu değerin üzerine çıkıldıkça puan <span class="font-bold text-purple-600">130 puana</span> kadar yükselir.
+                  </p>
+                </div>
+
+                <!-- ACHT Açıklaması -->
+                <div class="flex items-center gap-2">
+                  <svg class="w-3 h-3 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                  <p class="text-sm text-gray-600">
+                    <span class="font-bold text-indigo-600">ACHT</span> için <span class="font-bold text-indigo-600">460</span> ve <span class="font-bold text-indigo-600">540</span> saniye değerleri <span class="font-bold text-yellow-600">B hedefi (100 puan)</span> olarak kabul edilir. <span class="font-bold text-indigo-600">500 saniye</span> hedef değerine yaklaştıkça puan <span class="font-bold text-purple-600">130 puana</span> kadar yükselir.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
