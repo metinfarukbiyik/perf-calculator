@@ -358,7 +358,8 @@
     <footer class="relative mt-auto py-6 text-center">
       <p class="text-sm text-gray-600 flex items-center justify-center gap-1.5">
         Bu proje 
-        <a href="https://biyik.dev" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 font-medium transition-colors inline-flex items-center">
+        <a href="https://biyik.dev" target="_blank" rel="noopener noreferrer" class="text-rose-600 hover:text-rose-700 font-medium transition-colors inline-flex items-center gap-1">
+          <span class="inline-flex items-center justify-center bg-rose-100 text-rose-700 rounded w-5 h-5 text-xs font-bold">M</span>
           Metin Bıyık
         </a> 
         tarafından
