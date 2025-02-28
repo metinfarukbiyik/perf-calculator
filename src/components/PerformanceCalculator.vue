@@ -155,13 +155,13 @@
             <!-- SGS ve UOH Checkbox'ları -->
             <div class="mt-4 sm:mt-6 space-y-4">
               <!-- SGS -->
-              <div class="space-y-2">
+                  <div class="space-y-2">
                 <div class="flex items-center">
-                  <input 
-                    type="checkbox" 
+                      <input
+                        type="checkbox"
                     v-model="hasSGS"
-                    class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded transition-colors cursor-pointer"
-                  />
+                        class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded transition-colors cursor-pointer"
+                      />
                   <label class="ml-2 block text-sm text-gray-700">
                     SGS Kesintisi
                     <span class="ml-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-orange-50 text-orange-800">
@@ -176,12 +176,12 @@
                       type="button"
                       class="relative w-full cursor-default rounded-lg bg-white py-1.5 sm:py-2.5 pl-3 sm:pl-4 pr-8 sm:pr-10 text-left border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-150 text-xs sm:text-sm font-normal sm:font-medium"
                     >
-                      <span v-if="selectedSGSReason" class="flex items-center justify-between w-full">
+                      <span v-if="selectedSGSReason.length > 0" class="flex items-center justify-between w-full">
                         <span class="block truncate text-gray-900">
-                          {{ sgsReasons.find(r => r.id === selectedSGSReason)?.text }}
+                          {{ selectedSGSReason.map(id => sgsReasons.find(r => r.id === id)?.text).join(', ') }}
                         </span>
                         <span class="text-orange-600 ml-1 sm:ml-2">
-                          -{{ sgsReasons.find(r => r.id === selectedSGSReason)?.puan }}p
+                          -{{ selectedSGSReason.reduce((total, reasonId) => total + (sgsReasons.find(r => r.id === reasonId)?.puan || 0), 0) }}p
                         </span>
                       </span>
                       <span v-else class="block truncate text-gray-500">
@@ -203,7 +203,7 @@
                         :key="reason.id"
                         @click="(event) => selectSGSReason(reason.id, event)"
                         class="relative cursor-pointer select-none py-1.5 sm:py-2.5 pl-3 sm:pl-4 pr-8 sm:pr-10 hover:bg-orange-50 text-gray-900"
-                        :class="{ 'bg-orange-50 text-orange-900': selectedSGSReason === reason.id }"
+                        :class="{ 'bg-orange-50 text-orange-900': selectedSGSReason.includes(reason.id) }"
                       >
                         <span class="block truncate text-xs sm:text-sm font-normal sm:font-medium">{{ reason.text }}</span>
                         <span class="absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-8 text-orange-600 text-xs sm:text-sm font-normal sm:font-medium">
@@ -212,6 +212,9 @@
                       </div>
                     </div>
                   </div>
+                </div>
+                <div v-if="hasSGS && selectedSGSReason.length > 0" class="mt-2 text-sm text-gray-600 font-bold">
+                  Seçilen SGS reason sayısı: {{ selectedSGSReason.length }}
                 </div>
               </div>
 
@@ -228,7 +231,7 @@
                     <span class="ml-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-amber-50 text-amber-800">
                       -1 ile -60 puan arası
                     </span>
-                  </label>
+                      </label>
                 </div>
                 <div v-if="hasUOH" class="ml-6">
                   <div class="relative">
@@ -237,12 +240,12 @@
                       type="button"
                       class="relative w-full cursor-default rounded-lg bg-white py-1.5 sm:py-2.5 pl-3 sm:pl-4 pr-8 sm:pr-10 text-left border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-transparent transition duration-150 text-xs sm:text-sm font-normal sm:font-medium"
                     >
-                      <span v-if="selectedUOHReason" class="flex items-center justify-between w-full">
+                      <span v-if="selectedUOHReason.length > 0" class="flex items-center justify-between w-full">
                         <span class="block truncate text-gray-900">
-                          {{ uohReasons.find(r => r.id === selectedUOHReason)?.text }}
+                          {{ selectedUOHReason.map(id => uohReasons.find(r => r.id === id)?.text).join(', ') }}
                         </span>
                         <span class="text-amber-600 ml-1 sm:ml-2">
-                          -{{ uohReasons.find(r => r.id === selectedUOHReason)?.puan }}p
+                          -{{ selectedUOHReason.reduce((total, reasonId) => total + (uohReasons.find(r => r.id === reasonId)?.puan || 0), 0) }}p
                         </span>
                       </span>
                       <span v-else class="block truncate text-gray-500">
@@ -264,7 +267,7 @@
                         :key="reason.id"
                         @click="(event) => selectUOHReason(reason.id, event)"
                         class="relative cursor-pointer select-none py-1.5 sm:py-2.5 pl-3 sm:pl-4 pr-8 sm:pr-10 hover:bg-amber-50 text-gray-900"
-                        :class="{ 'bg-amber-50 text-amber-900': selectedUOHReason === reason.id }"
+                        :class="{ 'bg-amber-50 text-amber-900': selectedUOHReason.includes(reason.id) }"
                       >
                         <span class="block truncate text-xs sm:text-sm font-normal sm:font-medium">{{ reason.text }}</span>
                         <span class="absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-8 text-amber-600 text-xs sm:text-sm font-normal sm:font-medium">
@@ -273,6 +276,9 @@
                       </div>
                     </div>
                   </div>
+                </div>
+                <div v-if="hasUOH && selectedUOHReason.length > 0" class="mt-2 text-sm text-gray-600 font-bold">
+                  Seçilen UOH reason sayısı: {{ selectedUOHReason.length }}
                 </div>
               </div>
             </div>
@@ -387,12 +393,12 @@
                   </div>
                   <div class="mt-1 text-sm text-red-600 font-medium space-y-0.5">
                     <div v-if="devamsizlik > 0">{{ devamsizlik }} gün: -{{ result.devamsizlikPuani.toFixed(1) }}</div>
-                    <div v-if="hasSGS && selectedSGSReason">
-                      SGS ({{ sgsReasons.find(r => r.id === selectedSGSReason)?.text }}): 
+                    <div v-if="hasSGS && selectedSGSReason.length > 0">
+                      SGS: 
                       -{{ result.sgsPuani.toFixed(1) }}
                     </div>
-                    <div v-if="hasUOH && selectedUOHReason">
-                      UOH ({{ uohReasons.find(r => r.id === selectedUOHReason)?.text }}): 
+                    <div v-if="hasUOH && selectedUOHReason.length > 0">
+                      UOH: 
                       -{{ result.uohPuani.toFixed(1) }}
                     </div>
                   </div>
@@ -536,7 +542,7 @@
             <span>ve</span>
             <span class="inline-flex items-center text-sky-600 font-medium bg-white/50 rounded-full px-2 py-1">
               <svg class="w-4 h-4 mr-1" viewBox="0 0 54 33">
-                <path fill="currentColor" d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z"/>
+                <path fill="currentColor" d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z"/>
               </svg>
               TailwindCSS
             </span>
@@ -598,8 +604,8 @@ const uohReasons = [
   { id: 11, text: 'Tarz', puan: 60 }
 ]
 
-const selectedSGSReason = ref<number | null>(null)
-const selectedUOHReason = ref<number | null>(null)
+const selectedSGSReason = ref<number[]>([])
+const selectedUOHReason = ref<number[]>([])
 
 // Dropdown durumları için ref'ler
 const isSGSOpen = ref(false)
@@ -628,14 +634,22 @@ onMounted(() => {
 
 // Reason seçme fonksiyonları
 const selectSGSReason = (id: number, event: Event) => {
-  event.stopPropagation() // Event'in parent elementlere yayılmasını engelle
-  selectedSGSReason.value = id
+  event.stopPropagation()
+  if (selectedSGSReason.value.includes(id)) {
+    selectedSGSReason.value = selectedSGSReason.value.filter(reasonId => reasonId !== id)
+  } else {
+    selectedSGSReason.value.push(id)
+  }
   isSGSOpen.value = false
 }
 
 const selectUOHReason = (id: number, event: Event) => {
-  event.stopPropagation() // Event'in parent elementlere yayılmasını engelle
-  selectedUOHReason.value = id
+  event.stopPropagation()
+  if (selectedUOHReason.value.includes(id)) {
+    selectedUOHReason.value = selectedUOHReason.value.filter(reasonId => reasonId !== id)
+  } else {
+    selectedUOHReason.value.push(id)
+  }
   isUOHOpen.value = false
 }
 
@@ -772,11 +786,17 @@ const calculatePerformance = () => {
   const devamsizlikPuani = calculateDevamsizlikPuani(Number(devamsizlik.value))
   
   // SGS ve UOH puanlarını seçilen reason'a göre hesapla
-  const sgsPuani = hasSGS.value && selectedSGSReason.value ? 
-    sgsReasons.find(r => r.id === selectedSGSReason.value)?.puan || 0 : 0
+  const sgsPuani = hasSGS.value ? 
+    selectedSGSReason.value.reduce((total, reasonId) => {
+      const reason = sgsReasons.find(r => r.id === reasonId)
+      return total + (reason ? reason.puan : 0)
+    }, 0) : 0
   
-  const uohPuani = hasUOH.value && selectedUOHReason.value ? 
-    uohReasons.find(r => r.id === selectedUOHReason.value)?.puan || 0 : 0
+  const uohPuani = hasUOH.value ? 
+    selectedUOHReason.value.reduce((total, reasonId) => {
+      const reason = uohReasons.find(r => r.id === reasonId)
+      return total + (reason ? reason.puan : 0)
+    }, 0) : 0
 
   const toplamPuan = mmaPuan + achtPuan - Math.abs(devamsizlikPuani) - sgsPuani - uohPuani
   const performanceLevel = calculatePerformanceLevel(toplamPuan)
