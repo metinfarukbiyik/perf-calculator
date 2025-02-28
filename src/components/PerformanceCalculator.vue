@@ -156,8 +156,19 @@
             <!-- SGS ve UOH Checkbox'ları -->
             <div class="mt-4 sm:mt-6 space-y-4">
               <!-- SGS -->
-              <div class="bg-purple-100 border-l-4 border-purple-200 text-purple-800 p-4 mb-4 rounded-xl shadow-md" role="alert">
-                <p class="font-bold text-lg">SGS ve UOH'a Karşı ExtraJet Var!</p>
+              <div class="bg-white border-2 border-gradient-to-r from-purple-500 to-pink-600 p-2 mb-4 rounded-xl text-center" role="alert">
+                <div class="flex items-center justify-center">
+                  <svg class="h-6 w-6 mr-2" fill="none" stroke="url(#gradient)" viewBox="0 0 24 24">
+                    <defs>
+                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#4F46E5" />
+                        <stop offset="100%" stop-color="#D946EF" />
+                      </linearGradient>
+                    </defs>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <p class="font-semibold text-lg bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent" style="font-size: 1.2rem;">SGS ve UOH'a Karşı ExtraJet Var!</p>
+                </div>
               </div>
                   <div class="space-y-2">
                 <div class="flex items-center">
