@@ -23,6 +23,7 @@
         <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-visible mx-auto">
           <!-- Input Alanları -->
           <div class="p-4 sm:p-6 lg:p-8">
+            
             <div class="grid gap-4 sm:gap-6 sm:grid-cols-2">
               <!-- MMA Input -->
               <div class="w-full">
@@ -86,7 +87,7 @@
                     <div class="h-full pr-3 flex items-center border-l border-gray-300 w-[100px] justify-end">
                       <div class="flex flex-col -space-y-px">
                         <button 
-                          @click="achtValue = Number(achtValue) + 1"
+                          @click="achtValue = (Number(achtValue) + 1).toString()"
                           class="px-1.5 py-1 text-gray-500 hover:text-indigo-600 focus:outline-none"
                         >
                           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -94,7 +95,7 @@
                           </svg>
                         </button>
                         <button 
-                          @click="achtValue = Number(achtValue) - 1"
+                          @click="achtValue = (Number(achtValue) - 1).toString()"
                           class="px-1.5 py-1 text-gray-500 hover:text-indigo-600 focus:outline-none"
                         >
                           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,6 +156,9 @@
             <!-- SGS ve UOH Checkbox'ları -->
             <div class="mt-4 sm:mt-6 space-y-4">
               <!-- SGS -->
+              <div class="bg-purple-100 border-l-4 border-purple-200 text-purple-800 p-4 mb-4 rounded-xl shadow-md" role="alert">
+                <p class="font-bold text-lg">SGS ve UOH'a Karşı ExtraJet Var!</p>
+              </div>
                   <div class="space-y-2">
                 <div class="flex items-center">
                       <input
@@ -162,6 +166,7 @@
                     v-model="hasSGS"
                         class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded transition-colors cursor-pointer"
                       />
+                      
                   <label class="ml-2 block text-sm text-gray-700">
                     SGS Kesintisi
                     <span class="ml-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-orange-50 text-orange-800">
@@ -788,7 +793,7 @@ const calculatePerformance = () => {
   // SGS ve UOH puanlarını seçilen reason'a göre hesapla
   const sgsPuani = hasSGS.value ? 
     selectedSGSReason.value.reduce((total, reasonId) => {
-      const reason = sgsReasons.find(r => r.id === reasonId)
+    const reason = sgsReasons.find(r => r.id === reasonId)
       return total + (reason ? reason.puan : 0)
     }, 0) : 0
   
