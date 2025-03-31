@@ -16,6 +16,7 @@
           </h1>
           <p class="mt-2 sm:mt-3 text-sm sm:text-base text-gray-600 font-light px-4 max-w-xl mx-auto">
             MMA ve ACHT değerlerinizi girerek performans puanınızı hesaplayın
+            
           </p>
         </div>
 
@@ -557,6 +558,9 @@
               </span>
               <span>kullanılarak oluşturulmuştur.</span>
             </p>
+            <div class="mt-3 text-center">
+              <span class="text-xs text-gray-500 bg-gray-50 px-2 py-0.5 rounded-full">{{ version }}</span>
+            </div>
           </div>
         </footer>
       </div>
@@ -567,34 +571,34 @@
       <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 z-40" @click="showModal = false"></div>
     </Transition>
     <Transition name="modal">
-      <div v-if="showModal" class="fixed inset-0 flex items-center justify-center z-50">
-        <div class="bg-white rounded-xl shadow-xl max-w-md w-full mx-4 transform" @click.stop>
-          <div class="p-5 border-b border-gray-200">
+      <div v-if="showModal" class="fixed inset-0 flex items-center justify-center z-50 p-4 overflow-y-auto">
+        <div class="bg-white rounded-xl shadow-xl max-w-md w-full mx-auto max-h-[90vh] flex flex-col" @click.stop>
+          <div class="p-4 sm:p-5 border-b border-gray-200 flex-shrink-0">
             <div class="flex items-center justify-between">
               <h3 class="text-lg font-medium text-gray-900">Uyarı</h3>
               <button @click="showModal = false" class="text-gray-400 hover:text-gray-500 focus:outline-none">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
           </div>
-          <div class="p-5">
+          <div class="p-4 sm:p-5 overflow-y-auto">
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <svg class="h-6 w-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="h-5 w-5 sm:h-6 sm:w-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
               </div>
               <div class="ml-3">
-                <p class="text-sm text-gray-700">{{ modalMessage }}</p>
+                <p class="text-sm sm:text-base text-gray-700">{{ modalMessage }}</p>
               </div>
             </div>
           </div>
-          <div class="p-4 bg-gray-50 rounded-b-xl flex justify-end">
+          <div class="p-4 bg-gray-50 rounded-b-xl flex justify-end flex-shrink-0">
             <button
               @click="showModal = false"
-              class="px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
+              class="px-3 py-1.5 sm:px-4 sm:py-2 bg-indigo-600 text-white text-sm sm:text-base font-medium rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
             >
               Tamam
             </button>
@@ -608,15 +612,16 @@
       <div v-if="showInfoModal" class="fixed inset-0 bg-black bg-opacity-50 z-40" @click="showInfoModal = false"></div>
     </Transition>
     <Transition name="info-modal">
-      <div v-if="showInfoModal" class="fixed inset-0 flex items-center justify-center z-50">
-        <div class="bg-white rounded-xl shadow-xl max-w-lg w-full mx-4 transform" @click.stop>
-          <div class="py-4 px-5 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+      <div v-if="showInfoModal" class="fixed inset-0 flex items-center justify-center z-50 p-4 overflow-y-auto">
+        <div class="bg-white rounded-xl shadow-xl max-w-lg w-full mx-auto max-h-[90vh] flex flex-col" @click.stop>
+          <div class="py-4 px-5 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 flex-shrink-0">
             <div class="flex items-center justify-between">
               <h3 class="text-xl font-semibold text-gray-800 flex items-center">
                 <svg class="w-6 h-6 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                LiveChat Performans Hesaplama
+                <span class="truncate">LiveChat Performans Hesaplama</span>
+                <span class="ml-2 text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full font-medium">{{ version }}</span>
               </h3>
               <button @click="showInfoModal = false" class="text-gray-400 hover:text-gray-500 focus:outline-none">
                 <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -625,21 +630,21 @@
               </button>
             </div>
           </div>
-          <div class="p-5">
+          <div class="p-5 overflow-y-auto">
             <div class="space-y-5">
               <!-- Hedef Değerler ve Ağırlıklar -->
-              <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4 shadow-sm">
-                <h4 class="text-lg font-medium text-gray-800 mb-3 border-b border-gray-200 pb-2">Hedef Değerler ve Ağırlıklar</h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-3 sm:p-4 shadow-sm">
+                <h4 class="text-base sm:text-lg font-medium text-gray-800 mb-2 sm:mb-3 border-b border-gray-200 pb-2">Hedef Değerler ve Ağırlıklar</h4>
+                <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
                   <!-- MMA Bilgisi -->
                   <div class="bg-white rounded-lg p-3 shadow-sm border border-blue-100">
                     <div class="flex items-center">
-                      <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mr-3 border border-blue-200">
-                        <span class="text-blue-600 font-bold">MMA</span>
+                      <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-50 rounded-full flex items-center justify-center mr-3 border border-blue-200">
+                        <span class="text-blue-600 font-bold text-sm sm:text-base">MMA</span>
                       </div>
                       <div>
-                        <div class="text-sm text-gray-700">Hedef: <span class="font-semibold text-blue-600">4.15</span></div>
-                        <div class="text-sm text-gray-700">Ağırlık: <span class="font-semibold text-blue-600">%80</span></div>
+                        <div class="text-xs sm:text-sm text-gray-700">Hedef: <span class="font-semibold text-blue-600">4.15</span></div>
+                        <div class="text-xs sm:text-sm text-gray-700">Ağırlık: <span class="font-semibold text-blue-600">%80</span></div>
                       </div>
                     </div>
                   </div>
@@ -647,64 +652,73 @@
                   <!-- ACHT Bilgisi -->
                   <div class="bg-white rounded-lg p-3 shadow-sm border border-indigo-100">
                     <div class="flex items-center">
-                      <div class="w-12 h-12 bg-indigo-50 rounded-full flex items-center justify-center mr-3 border border-indigo-200">
-                        <span class="text-indigo-600 font-bold">ACHT</span>
+                      <div class="w-10 h-10 sm:w-12 sm:h-12 bg-indigo-50 rounded-full flex items-center justify-center mr-3 border border-indigo-200">
+                        <span class="text-indigo-600 font-bold text-sm sm:text-base">ACHT</span>
                       </div>
                       <div>
-                        <div class="text-sm text-gray-700">Hedef: <span class="font-semibold text-indigo-600">500 sn</span></div>
-                        <div class="text-sm text-gray-700">Ağırlık: <span class="font-semibold text-indigo-600">%20</span></div>
+                        <div class="text-xs sm:text-sm text-gray-700">Hedef: <span class="font-semibold text-indigo-600">500 sn</span></div>
+                        <div class="text-xs sm:text-sm text-gray-700">Ağırlık: <span class="font-semibold text-indigo-600">%20</span></div>
                       </div>
                     </div>
                   </div>
                 </div>
-                
-                <!-- Hesaplama Formülü -->
-               
               </div>
               
               <!-- Performans Bilgileri -->
-              <div class="space-y-3">
-                <h4 class="text-base font-medium text-gray-800">Önemli Bilgiler</h4>
+              <div class="space-y-2 sm:space-y-3">
+                <h4 class="text-sm sm:text-base font-medium text-gray-800">Önemli Bilgiler</h4>
                 
-                <div class="flex items-start bg-white p-3 rounded-lg shadow-sm border border-gray-100">
+                <div class="flex items-start bg-white p-2 sm:p-3 rounded-lg shadow-sm border border-gray-100">
                   <div class="flex-shrink-0 mt-0.5">
-                    <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
-                  <p class="text-sm text-gray-600 ml-2">
+                  <p class="text-xs sm:text-sm text-gray-600 ml-2">
                     MMA için <span class="font-medium text-blue-600">4.15</span> değeri <span class="font-medium text-yellow-600">B hedefi (100 puan)</span> olarak kabul edilir.
                   </p>
                 </div>
                 
-                <div class="flex items-start bg-white p-3 rounded-lg shadow-sm border border-gray-100">
+                <div class="flex items-start bg-white p-2 sm:p-3 rounded-lg shadow-sm border border-gray-100">
                   <div class="flex-shrink-0 mt-0.5">
-                    <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
-                  <p class="text-sm text-gray-600 ml-2">
-                    ACHT için <span class="font-medium text-indigo-600">460-540</span> saniye arası değerler <span class="font-medium text-yellow-600">B hedefi (100 puan)</span> olarak kabul edilir.
+                  <p class="text-xs sm:text-sm text-gray-600 ml-2">
+                    <span class="font-bold text-indigo-600">ACHT</span> için <span class="font-bold text-indigo-600">460</span> ve <span class="font-bold text-indigo-600">540</span> saniye değerleri <span class="font-bold text-yellow-600">B hedefi (100 puan)</span> olarak kabul edilir.
                   </p>
                 </div>
                 
-                <div class="flex items-start bg-white p-3 rounded-lg shadow-sm border border-gray-100">
+                <div class="flex items-start bg-white p-2 sm:p-3 rounded-lg shadow-sm border border-gray-100">
                   <div class="flex-shrink-0 mt-0.5">
-                    <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
-                  <p class="text-sm text-gray-600 ml-2">
+                  <p class="text-xs sm:text-sm text-gray-600 ml-2">
                     Kesintiler: devamsızlık, SGS ve UOH puanları toplam puandan düşülür.
+                  </p>
+                </div>
+                
+                <!-- Sürüm Bilgisi -->
+                <div class="flex items-start bg-white p-2 sm:p-3 rounded-lg shadow-sm border border-gray-100">
+                  <div class="flex-shrink-0 mt-0.5">
+                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <p class="text-xs sm:text-sm text-gray-600 ml-2">
+                    Güncel sürüm: <span class="font-medium text-indigo-600">{{ version }}</span> - ACHT hesaplama formülü ve MMA puanlama bilgilerine ait güncellemeler içerir.
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="p-4 bg-gray-50 rounded-b-xl flex justify-end border-t border-gray-100">
+          <div class="p-4 bg-gray-50 rounded-b-xl flex justify-end border-t border-gray-100 flex-shrink-0">
             <button
               @click="showInfoModal = false"
-              class="px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors shadow-sm"
+              class="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm sm:text-base font-medium rounded-lg hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors shadow-sm"
             >
               Anladım
             </button>
@@ -738,6 +752,7 @@ const result = ref<PerformanceResult | null>(null)
 const showModal = ref(false)
 const modalMessage = ref('')
 const showInfoModal = ref(true)
+const version = ref('v1.3.0')
 
 // Reason tabloları
 const sgsReasons = [
@@ -1097,6 +1112,26 @@ select:focus.ring-amber-500 {
   100% {
     opacity: 0;
     transform: translateY(15px) scale(0.95);
+  }
+}
+
+/* Mobil uyumluluk için ek stiller */
+@media (max-width: 640px) {
+  .max-h-[90vh] {
+    max-height: 85vh; /* Mobil cihazlarda biraz daha küçük */
+  }
+  
+  /* Modal içeriği için scroll stilleri */
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch; /* iOS'ta daha akıcı scroll */
+  }
+  
+  /* Modal yüksekliğini sınırla */
+  .info-modal-enter-active, 
+  .info-modal-leave-active, 
+  .modal-enter-active, 
+  .modal-leave-active {
+    transform-origin: center;
   }
 }
 </style> 
