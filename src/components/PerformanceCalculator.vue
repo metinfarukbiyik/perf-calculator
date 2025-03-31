@@ -526,7 +526,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                   </svg>
                   <p class="text-sm text-gray-600">
-                    <span class="font-bold text-indigo-600">ACHT</span> için <span class="font-bold text-indigo-600">460</span> ve <span class="font-bold text-indigo-600">540</span> saniye değerleri <span class="font-bold text-yellow-600">B hedefi (100 puan)</span> olarak kabul edilir. <span class="font-bold text-indigo-600">500 saniye</span> hedef değerine yaklaştıkça puan <span class="font-bold text-purple-600">130 puana</span> kadar yükselir.
+                    <span class="font-bold text-indigo-600">ACHT</span> için <span class="font-bold text-indigo-600">460</span> ve <span class="font-bold text-indigo-600">540</span> saniye değerleri <span class="font-bold text-yellow-600">B hedefi (100 puan)</span> olarak kabul edilir. <span class="font-bold text-indigo-600">500 saniye</span> hedef değerine yaklaştıkça puan <span class="font-bold text-purple-600">130 skala üzerinden 26.0 puana</span> kadar yükselir. <span class="font-bold text-indigo-600">425</span> ve <span class="font-bold text-indigo-600">575</span> saniye değerleri <span class="font-bold text-red-600">70 skala puanı (14.0 puan)</span> olarak değerlendirilir.
                   </p>
                 </div>
               </div>
@@ -686,7 +686,7 @@
                     </svg>
                   </div>
                   <p class="text-xs sm:text-sm text-gray-600 ml-2">
-                    <span class="font-bold text-indigo-600">ACHT</span> için <span class="font-bold text-indigo-600">460</span> ve <span class="font-bold text-indigo-600">540</span> saniye değerleri <span class="font-bold text-yellow-600">B hedefi (100 puan)</span> olarak kabul edilir. <span class="font-bold text-indigo-600">500 saniye</span> hedef değerine yaklaştıkça puan <span class="font-bold text-purple-600">130 puana</span> kadar yükselir.
+                    <span class="font-bold text-indigo-600">ACHT</span> için <span class="font-bold text-indigo-600">460</span> ve <span class="font-bold text-indigo-600">540</span> saniye değerleri <span class="font-bold text-yellow-600">B hedefi (100 puan)</span> olarak kabul edilir. <span class="font-bold text-indigo-600">500 saniye</span> hedef değerine yaklaştıkça puan <span class="font-bold text-purple-600">130 skala üzerinden 26.0 puana</span> kadar yükselir. <span class="font-bold text-indigo-600">425</span> ve <span class="font-bold text-indigo-600">575</span> saniye değerleri <span class="font-bold text-red-600">70 skala puanı (14.0 puan)</span> olarak değerlendirilir.
                   </p>
                 </div>
                 
