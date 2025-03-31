@@ -572,7 +572,7 @@
     </Transition>
     <Transition name="modal">
       <div v-if="showModal" class="fixed inset-0 flex items-center justify-center z-50 p-4 overflow-y-auto">
-        <div class="bg-white rounded-xl shadow-xl w-full mx-auto max-h-[90vh] flex flex-col sm:max-w-md modal-content" @click.stop>
+        <div class="bg-white rounded-xl shadow-xl w-full mx-auto max-h-[90vh] flex flex-col sm:max-w-lg md:max-w-xl lg:max-w-3xl modal-content" @click.stop>
           <div class="p-4 sm:p-5 border-b border-gray-200 flex-shrink-0">
             <div class="flex items-center justify-between">
               <h3 class="text-lg font-medium text-gray-900 pr-2 truncate max-w-[80%] modal-header-title">Uyarı</h3>
@@ -613,7 +613,7 @@
     </Transition>
     <Transition name="info-modal">
       <div v-if="showInfoModal" class="fixed inset-0 flex items-center justify-center z-50 p-4 overflow-y-auto">
-        <div class="bg-white rounded-xl shadow-xl w-full mx-auto max-h-[90vh] flex flex-col sm:max-w-lg modal-content" @click.stop>
+        <div class="bg-white rounded-xl shadow-xl w-full mx-auto max-h-[90vh] flex flex-col sm:max-w-lg md:max-w-xl lg:max-w-3xl modal-content" @click.stop>
           <div class="py-4 px-5 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 flex-shrink-0">
             <div class="flex items-center justify-between">
               <h3 class="text-xl font-semibold text-gray-800 flex flex-wrap items-center gap-1 pr-2 max-w-[80%] modal-header-title">
@@ -686,7 +686,7 @@
                     </svg>
                   </div>
                   <p class="text-xs sm:text-sm text-gray-600 ml-2">
-                    <span class="font-bold text-indigo-600">ACHT</span> için <span class="font-bold text-indigo-600">460</span> ve <span class="font-bold text-indigo-600">540</span> saniye değerleri <span class="font-bold text-yellow-600">B hedefi (100 puan)</span> olarak kabul edilir.
+                    <span class="font-bold text-indigo-600">ACHT</span> için <span class="font-bold text-indigo-600">460</span> ve <span class="font-bold text-indigo-600">540</span> saniye değerleri <span class="font-bold text-yellow-600">B hedefi (100 puan)</span> olarak kabul edilir. <span class="font-bold text-indigo-600">500 saniye</span> hedef değerine yaklaştıkça puan <span class="font-bold text-purple-600">130 puana</span> kadar yükselir.
                   </p>
                 </div>
                 
@@ -697,7 +697,7 @@
                     </svg>
                   </div>
                   <p class="text-xs sm:text-sm text-gray-600 ml-2">
-                    Kesintiler: devamsızlık, SGS ve UOH puanları toplam puandan düşülür.
+                    <span class="font-bold">Kesintiler:</span> devamsızlık, SGS ve UOH puanları toplam puandan düşülür.
                   </p>
                 </div>
                 
@@ -709,7 +709,7 @@
                     </svg>
                   </div>
                   <p class="text-xs sm:text-sm text-gray-600 ml-2">
-                    Güncel sürüm: <span class="font-medium text-indigo-600">{{ version }}</span> - ACHT hesaplama formülü ve MMA puanlama bilgilerine ait güncellemeler içerir.
+                    <span class="text-sm text-red-600 font-medium">Güncel Sürüm:</span> <span class="font-medium text-indigo-600">{{ version }}</span> - ACHT hesaplama formülü ve MMA puanlama bilgilerine ait güncellemeler içerir. Yeni sürümde bilgilendirme Modal penceresi de eklenmiştir.
                   </p>
                 </div>
               </div>
@@ -1115,26 +1115,6 @@ select:focus.ring-amber-500 {
   }
 }
 
-/* Mobil uyumluluk için ek stiller */
-@media (max-width: 640px) {
-  .max-h-[90vh] {
-    max-height: 85vh; /* Mobil cihazlarda biraz daha küçük */
-  }
-  
-  /* Modal içeriği için scroll stilleri */
-  .overflow-y-auto {
-    -webkit-overflow-scrolling: touch; /* iOS'ta daha akıcı scroll */
-  }
-  
-  /* Modal yüksekliğini sınırla */
-  .info-modal-enter-active, 
-  .info-modal-leave-active, 
-  .modal-enter-active, 
-  .modal-leave-active {
-    transform-origin: center;
-  }
-}
-
 /* Modal sağdan taşma sorunu için ek stil düzenlemeleri */
 .modal-content {
   max-width: 100% !important;
@@ -1142,7 +1122,26 @@ select:focus.ring-amber-500 {
   overflow-x: hidden;
 }
 
-/* Mobil ekranlarda modallar için ek düzenlemeler */
+@media (min-width: 640px) {
+  .modal-content {
+    width: auto !important;
+    max-width: 400px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .modal-content {
+    max-width: 450px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal-content {
+    max-width: 48rem !important; /* 3xl - ana içerik ile aynı genişlikte */
+  }
+}
+
+/* Mobil uyumluluk için ek stiller */
 @media (max-width: 640px) {
   .modal-header-title {
     font-size: 1rem !important; /* Mobil ekranlarda daha küçük başlık fontu */
@@ -1158,6 +1157,10 @@ select:focus.ring-amber-500 {
   }
   
   .max-h-90vh {
+    max-height: 85vh; /* Mobil cihazlarda biraz daha küçük */
+  }
+  
+  .max-h-\\[90vh\\] {
     max-height: 85vh; /* Mobil cihazlarda biraz daha küçük */
   }
   
