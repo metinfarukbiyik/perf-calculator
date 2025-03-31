@@ -572,11 +572,11 @@
     </Transition>
     <Transition name="modal">
       <div v-if="showModal" class="fixed inset-0 flex items-center justify-center z-50 p-4 overflow-y-auto">
-        <div class="bg-white rounded-xl shadow-xl max-w-md w-full mx-auto max-h-[90vh] flex flex-col" @click.stop>
+        <div class="bg-white rounded-xl shadow-xl w-full mx-auto max-h-[90vh] flex flex-col sm:max-w-md modal-content" @click.stop>
           <div class="p-4 sm:p-5 border-b border-gray-200 flex-shrink-0">
             <div class="flex items-center justify-between">
-              <h3 class="text-lg font-medium text-gray-900">Uyarı</h3>
-              <button @click="showModal = false" class="text-gray-400 hover:text-gray-500 focus:outline-none">
+              <h3 class="text-lg font-medium text-gray-900 pr-2 truncate max-w-[80%] modal-header-title">Uyarı</h3>
+              <button @click="showModal = false" class="text-gray-400 hover:text-gray-500 focus:outline-none flex-shrink-0 ml-2">
                 <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -613,17 +613,17 @@
     </Transition>
     <Transition name="info-modal">
       <div v-if="showInfoModal" class="fixed inset-0 flex items-center justify-center z-50 p-4 overflow-y-auto">
-        <div class="bg-white rounded-xl shadow-xl max-w-lg w-full mx-auto max-h-[90vh] flex flex-col" @click.stop>
+        <div class="bg-white rounded-xl shadow-xl w-full mx-auto max-h-[90vh] flex flex-col sm:max-w-lg modal-content" @click.stop>
           <div class="py-4 px-5 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 flex-shrink-0">
             <div class="flex items-center justify-between">
-              <h3 class="text-xl font-semibold text-gray-800 flex items-center">
-                <svg class="w-6 h-6 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <h3 class="text-xl font-semibold text-gray-800 flex flex-wrap items-center gap-1 pr-2 max-w-[80%] modal-header-title">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 mr-1 flex-shrink-0 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span class="truncate">LiveChat Performans Hesaplama</span>
-                <span class="ml-2 text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full font-medium">{{ version }}</span>
+                <span class="truncate">LiveChat Performans</span>
+                <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full font-medium whitespace-nowrap">{{ version }}</span>
               </h3>
-              <button @click="showInfoModal = false" class="text-gray-400 hover:text-gray-500 focus:outline-none">
+              <button @click="showInfoModal = false" class="text-gray-400 hover:text-gray-500 focus:outline-none flex-shrink-0 ml-2">
                 <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -631,10 +631,10 @@
             </div>
           </div>
           <div class="p-5 overflow-y-auto">
-            <div class="space-y-5">
+            <div class="space-y-4 sm:space-y-5">
               <!-- Hedef Değerler ve Ağırlıklar -->
-              <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-3 sm:p-4 shadow-sm">
-                <h4 class="text-base sm:text-lg font-medium text-gray-800 mb-2 sm:mb-3 border-b border-gray-200 pb-2">Hedef Değerler ve Ağırlıklar</h4>
+              <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-2 sm:p-3 md:p-4 shadow-sm">
+                <h4 class="text-sm sm:text-base font-medium text-gray-800 mb-2 pb-2 border-b border-gray-200">Hedef Değerler ve Ağırlıklar</h4>
                 <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
                   <!-- MMA Bilgisi -->
                   <div class="bg-white rounded-lg p-3 shadow-sm border border-blue-100">
@@ -1127,6 +1127,44 @@ select:focus.ring-amber-500 {
   }
   
   /* Modal yüksekliğini sınırla */
+  .info-modal-enter-active, 
+  .info-modal-leave-active, 
+  .modal-enter-active, 
+  .modal-leave-active {
+    transform-origin: center;
+  }
+}
+
+/* Modal sağdan taşma sorunu için ek stil düzenlemeleri */
+.modal-content {
+  max-width: 100% !important;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Mobil ekranlarda modallar için ek düzenlemeler */
+@media (max-width: 640px) {
+  .modal-header-title {
+    font-size: 1rem !important; /* Mobil ekranlarda daha küçük başlık fontu */
+    max-width: 75% !important;
+  }
+  
+  .modal-header-title span {
+    max-width: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .max-h-90vh {
+    max-height: 85vh; /* Mobil cihazlarda biraz daha küçük */
+  }
+  
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch; /* iOS'ta daha akıcı scroll */
+  }
+  
   .info-modal-enter-active, 
   .info-modal-leave-active, 
   .modal-enter-active, 
