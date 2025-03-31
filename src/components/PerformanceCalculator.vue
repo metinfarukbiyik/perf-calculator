@@ -697,7 +697,7 @@
                     </svg>
                   </div>
                   <p class="text-xs sm:text-sm text-gray-600 ml-2">
-                    <span class="font-bold">Kesintiler:</span> devamsızlık, SGS ve UOH puanları toplam puandan düşülür.
+                    <span class="font-bold">Kesintiler:</span> Devamsızlık, SGS ve UOH puanları toplam puandan düşülür.
                   </p>
                 </div>
                 
